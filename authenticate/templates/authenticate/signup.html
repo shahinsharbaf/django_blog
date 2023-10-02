@@ -1,0 +1,17 @@
+{% extends '../templates/layout.html' %}
+
+{% block main %}
+{% for message in messgaes %}
+    {{message}}
+{% endfor %}
+<form action="" method="post" class="p-4">
+    {% csrf_token %}
+    <label for="username">username: </label>
+    <input type="text" name="username" id="username" />
+    <label for="password">password: </label>
+    <input type="password" name="password" id="password" />
+    <label for="email">email: </label>
+    <input type="email" name="email" id="email" />
+    <input type="submit" value="register" />
+</form>
+{% endblock main %}
