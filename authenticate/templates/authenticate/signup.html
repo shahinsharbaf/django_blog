@@ -1,17 +1,18 @@
 {% extends '../templates/layout.html' %}
-
+{% load static %}
+{% block linkcss %}
+    <link rel="stylesheet" href={% static 'css/authenticate/style.css' %} />
+{% endblock linkcss %}
 {% block main %}
-{% for message in messgaes %}
-    {{message}}
-{% endfor %}
 <form action="" method="post" class="p-4">
     {% csrf_token %}
-    <label for="username">username: </label>
-    <input type="text" name="username" id="username" />
-    <label for="password">password: </label>
-    <input type="password" name="password" id="password" />
-    <label for="email">email: </label>
-    <input type="email" name="email" id="email" />
-    <input type="submit" value="register" />
+    {% for field in form %}
+        <div class="register-form class-{{field.name}} m-5">
+            {{ field.errors }}
+            <p>{{ field.label_tag }}</p>
+            {{ field }}
+        </div>
+    {% endfor %}
+    <button type="submit">register</button>
 </form>
 {% endblock main %}
